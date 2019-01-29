@@ -1,6 +1,13 @@
 @import './_normalize.css';
 @import url('https://fonts.googleapis.com/css?family=Montserrat|Charm');
 
+div#limiter {
+  display: inline-block;
+}
+#menu {
+  float: right;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -43,16 +50,6 @@ img {
   text-align: right;
 }
 
-#title h1 {
-  margin: 0;
-}
-
-#title-area {
-  display: grid;
-  grid-template-columns: 2fr 3fr 5fr;
-  padding-top: 20px;
-  font-size: 0.9rem;
-}
 
 #title-area button {
   background: #fff;
@@ -63,12 +60,11 @@ img {
   cursor: pointer;
 }
 
-#paper {
+#slate-editor {
   background: #fff;
   padding: 20px 50px;
   margin-bottom: 20px;
-  min-height: 600px;
-  box-shadow: 0 10px 10px #ddd;
+  min-height: 250px;
 }
 
 .upload-btn-wrapper {
@@ -95,7 +91,9 @@ img {
 
 #toolbar {
   padding-top: 20px;
-  padding-bottom: 10px;
+  padding-bottom: 20px;
+  background: #f1c40f;
+  padding-left: 20px;
 }
 
 #toolbar button {

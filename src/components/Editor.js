@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {Editor} from 'slate-react';
 import {Block, Value} from 'slate';
-import initialValue from './_value';
+import initialValue from './value';
 
 document.title = 'Rich text Editor';
 
@@ -93,7 +93,7 @@ export default class MyEditor extends Component {
             <button
                 onMouseDown={(event) => this.activateMark(event, type)}
                 title={type}>
-                <i class={`fas ${name}`}/>
+                <i className={`fa ${name}`}/>
             </button>
         );
     };
@@ -108,8 +108,15 @@ export default class MyEditor extends Component {
                 isActive = this.hasBlock('list-item') && parent && parent.type === type;
             }
         }
-
-        if (type === 'imageBrowser') {
+	
+		if (name === 'H1' || name === 'H2') {
+            return(
+            <button title={type} onClick={(event) => this.activateBlock(event, type)}>
+                {`${name}`}
+            </button>)
+        }
+		
+			if (type === 'imageBrowser') {
             return (
                 <div className="upload-btn-wrapper">
                     <button title={type}>
@@ -118,7 +125,7 @@ export default class MyEditor extends Component {
                             id="input-button"
                             onChange={(event) => this.activateBlock(event, type)}
                         />
-                        <i class={`fas ${name}`}/>
+                        <i className={`fas ${name}`}/>
                     </button>
                 </div>
             );
@@ -126,7 +133,7 @@ export default class MyEditor extends Component {
 
         return (
             <button title={type} onClick={(event) => this.activateBlock(event, type)}>
-                <i class={`fas ${name}`}/>
+                <i className={`fas ${name}`}/>
             </button>
         );
     };
@@ -387,51 +394,24 @@ export default class MyEditor extends Component {
                 <div id="header">
                     <div className="wrapper">
                         <div id="title-area">
-                            <div id="title">
                                 <h2> Rich Text Editor</h2>
-                            </div>
-                            <div id="limiter">
-                                <form onSubmit={this.updateNodeLimit} action="/" method="POST">
-                                    Node limit:&nbsp;
-                                    <input
-                                        name="limit"
-                                        type="number"
-                                        defaultValue={0}
-                                        className="input-number"
-                                    />
-                                    <button>Set</button>
-                                </form>
-                            </div>
-                            <div id="menu">
-                                <div className="buttons">
-                                    <button onClick={this.restoreContent}>Cancel</button>
-                                    <button
-                                        disabled={this.state.saveDisabled ? true : false}
-                                        onClick={this.saveContent}>
-                                        Save
-                                    </button>
-                                </div>
-                            </div>
                         </div>
                         <div id="toolbar">
                             {this.renderMarkButton('bold', 'fa-bold')}
                             {this.renderMarkButton('italic', 'fa-italic')}
                             {this.renderMarkButton('underline', 'fa-underline')}
-                            {this.renderMarkButton('strikethrough', 'fa-strikethrough')}
-                            {this.renderMarkButton('code', 'fa-code')}
-                            {this.renderBlockButton('heading-one', 'fa-heading')}
-                            {this.renderBlockButton('heading-two', 'fa-heading')}
+                            {this.renderBlockButton('heading-one', 'H1')}
+                            {this.renderBlockButton('heading-two', 'H2')}
                             {this.renderBlockButton('paragraph', 'fa-paragraph')}
-                            {this.renderBlockButton('code', 'fa-terminal')}
                             {this.renderBlockButton('blockquote', 'fa-quote-right')}
                             {this.renderBlockButton('numbered-list', 'fa-list-ol')}
                             {this.renderBlockButton('bulleted-list', 'fa-list-ul')}
                             {this.renderBlockButton('image', 'fa-image')}
-                            {this.renderBlockButton('imageBrowser', 'fa-cloud-upload-alt')}
+                            {this.renderBlockButton('imageBrowser', 'fa-camera-retro')}
                         </div>
                     </div>
                 </div>
-                <div id="paper" className="wrapper">
+                <div id="slate-editor" className="wrapper">
                     <Editor
                         ref={this.ref}
                         autoFocus
@@ -445,6 +425,30 @@ export default class MyEditor extends Component {
                         plugins={plugins}
                         schema={schema}
                     />
+                </div>
+                <div className="wrapper">
+                    <div id="limiter">
+                        <form onSubmit={this.updateNodeLimit} action="/" method="POST">
+                            Node limit:&nbsp;
+                            <input
+                                name="limit"
+                                type="number"
+                                defaultValue={0}
+                                className="input-number"
+                            />
+                            <button>Set</button>
+                        </form>
+                    </div>
+                    <div id="menu">
+                        <div className="buttons">
+                            <button onClick={this.restoreContent}>Cancel</button>
+                            <button
+                                disabled={this.state.saveDisabled ? true : false}
+                                onClick={this.saveContent}>
+                                Save
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         );
