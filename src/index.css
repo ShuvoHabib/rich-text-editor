@@ -1,5 +1,5 @@
 @import './_normalize.css';
-@import url('https://fonts.googleapis.com/css?family=Montserrat|Charm');
+@import url('https://fonts.googleapis.com/css?family=Roboto');
 
 div#limiter {
   display: inline-block;
@@ -17,7 +17,7 @@ html {
 }
 
 body {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Roboto', sans-serif;
   color: #333333;
   line-height: 1.6em;
   background: #efefef;
@@ -109,24 +109,9 @@ img {
   color: #fff;
 }
 
-pre {
-  display: block;
-  background: #efefef;
-  padding: 20px;
-  margin: 0;
-}
-
-code {
-  background: #efefef;
-  padding: 3px 5px;
-  border-radius: 5px;
-}
-
 blockquote {
   font-family: 'Charm', cursive;
   padding: 10px;
   line-height: 1.2em;
   font-size: 2.2rem;
-  /* border-top: 1px solid #333;
-  border-bottom: 1px solid #333; */
 }

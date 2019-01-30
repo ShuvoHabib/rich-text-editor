@@ -365,7 +365,6 @@ export default class MyEditor extends Component {
     saveContent = () => {
         let content = JSON.stringify(this.state.value.toJSON());
         localStorage.setItem('content', content);
-        alert('Saved to browser.');
     };
 
     // Restore content
@@ -390,7 +389,7 @@ export default class MyEditor extends Component {
 
     render() {
         return (
-            <div id="shell">
+            <div id="editor-wrapper">
                 <div id="header">
                     <div className="wrapper">
                         <div id="title-area">
