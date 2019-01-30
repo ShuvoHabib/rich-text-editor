@@ -63,7 +63,7 @@ const plugins = [
 export default class MyEditor extends Component {
     state = {
         value: value,
-        nodeLimit: 0,
+        nodeLimit: '',
         saveDisabled: false
     };
 
@@ -72,7 +72,7 @@ export default class MyEditor extends Component {
         let blockSize = this.editor.value.document.getBlocks().size;
         let {nodeLimit} = this.state;
         let saveDisabled;
-        if (nodeLimit !== 0 && blockSize > nodeLimit) {
+        if (nodeLimit !== '' && blockSize > nodeLimit) {
             saveDisabled = true;
         } else {
             saveDisabled = false;
@@ -112,7 +112,7 @@ export default class MyEditor extends Component {
 		if (name === 'H1' || name === 'H2') {
             return(
             <button title={type} onClick={(event) => this.activateBlock(event, type)}>
-                {`${name}`}
+                {name}
             </button>)
         }
 		
@@ -125,7 +125,7 @@ export default class MyEditor extends Component {
                             id="input-button"
                             onChange={(event) => this.activateBlock(event, type)}
                         />
-                        <i className={`fas ${name}`}/>
+                        <i className={`fa ${name}`}/>
                     </button>
                 </div>
             );
@@ -133,7 +133,7 @@ export default class MyEditor extends Component {
 
         return (
             <button title={type} onClick={(event) => this.activateBlock(event, type)}>
-                <i className={`fas ${name}`}/>
+                <i className={`fa ${name}`}/>
             </button>
         );
     };
