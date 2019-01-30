@@ -38,7 +38,7 @@ function insertImage(editor, src, target) {
     });
 }
 
-function MarkHotkeys(options) {
+function convertTo(options) {
     let {key, type} = options;
     return {
         onKeyDown(event, editor, next) {
@@ -50,16 +50,14 @@ function MarkHotkeys(options) {
 }
 
 const plugins = [
-    MarkHotkeys({key: 'b', type: 'bold'}),
-    MarkHotkeys({key: 'i', type: 'italic'}),
-    MarkHotkeys({key: 'u', type: 'underline'}),
-    MarkHotkeys({key: '-', type: 'strikethrough'}),
-    MarkHotkeys({key: '`', type: 'code'})
+    convertTo({key: 'b', type: 'bold'}),
+    convertTo({key: 'i', type: 'italic'}),
+    convertTo({key: 'u', type: 'underline'}),
+    convertTo({key: '-', type: 'strikethrough'}),
+    convertTo({key: '`', type: 'code'})
 ];
 
-/**
- * Main app component file
- */
+
 export default class MyEditor extends Component {
     state = {
         value: value,
@@ -88,7 +86,7 @@ export default class MyEditor extends Component {
         return value.blocks.some((node) => node.type === type);
     };
 
-    renderMarkButton = (type, name) => {
+    renderConvertTo = (type, name) => {
         return (
             <button
                 onMouseDown={(event) => this.activateMark(event, type)}
@@ -98,7 +96,7 @@ export default class MyEditor extends Component {
         );
     };
 
-    renderBlockButton = (type, name) => {
+    renderBlockTo = (type, name) => {
         let isActive = this.hasBlock(type);
 
         if (type === 'numbered-list' || type === 'bulleted-list') {
@@ -396,17 +394,17 @@ export default class MyEditor extends Component {
                                 <h2> Rich Text Editor</h2>
                         </div>
                         <div id="toolbar">
-                            {this.renderMarkButton('bold', 'fa-bold')}
-                            {this.renderMarkButton('italic', 'fa-italic')}
-                            {this.renderMarkButton('underline', 'fa-underline')}
-                            {this.renderBlockButton('heading-one', 'H1')}
-                            {this.renderBlockButton('heading-two', 'H2')}
-                            {this.renderBlockButton('paragraph', 'fa-paragraph')}
-                            {this.renderBlockButton('blockquote', 'fa-quote-right')}
-                            {this.renderBlockButton('numbered-list', 'fa-list-ol')}
-                            {this.renderBlockButton('bulleted-list', 'fa-list-ul')}
-                            {this.renderBlockButton('image', 'fa-image')}
-                            {this.renderBlockButton('imageBrowser', 'fa-camera-retro')}
+                            {this.renderConvertTo('bold', 'fa-bold')}
+                            {this.renderConvertTo('italic', 'fa-italic')}
+                            {this.renderConvertTo('underline', 'fa-underline')}
+                            {this.renderBlockTo('heading-one', 'H1')}
+                            {this.renderBlockTo('heading-two', 'H2')}
+                            {this.renderBlockTo('paragraph', 'fa-paragraph')}
+                            {this.renderBlockTo('blockquote', 'fa-quote-right')}
+                            {this.renderBlockTo('numbered-list', 'fa-list-ol')}
+                            {this.renderBlockTo('bulleted-list', 'fa-list-ul')}
+                            {this.renderBlockTo('image', 'fa-image')}
+                            {this.renderBlockTo('imageBrowser', 'fa-camera-retro')}
                         </div>
                     </div>
                 </div>
